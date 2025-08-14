@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Flip Card with Instruction</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f0f0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 90%;
+    max-width: 350px;
+    aspect-ratio: 3 / 2;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+  }
+
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .flip-card-front img,
+  .flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  .card-instruction {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  @media (max-width: 480px) {
+    .flip-card {
+      max-width: 90%;
+      aspect-ratio: 4 / 3;
+    }
+    .card-instruction {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="flip-card" id="card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://res.cloudinary.com/dqdi10oa4/image/upload/v1755139424/Name_Card_1_copy_3x-100_qzjivo.jpg" alt="Front Image">
+    </div>
+    <div class="flip-card-back">
+      <img src="https://res.cloudinary.com/dqdi10oa4/image/upload/v1755139425/Name_Card_2_copy_3x-100_bmycsj.jpg" alt="Back Image">
+    </div>
+  </div>
+</div>
+
+<p class="card-instruction">Tap to view more details</p>
+
+<script>
+  const card = document.getElementById('card');
+  card.addEventListener('click', () => {
+    card.classList.toggle('flipped');
+  });
+</script>
+
+</body>
+</html>
